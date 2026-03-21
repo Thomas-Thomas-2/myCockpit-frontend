@@ -1,0 +1,171 @@
+.palette {
+  color: #3643ba;
+  color: #7affa6;
+  color: #0b1788;
+  color: #10a86b;
+  color: #ff9a3d;
+  color: #c9e136;
+  color: #ff62d3;
+  color: #b66cff;
+  color: #dfe0e1;
+  color: #434343;
+}
+
+.content {
+  width: 100vw;
+  height: 100vh;
+}
+
+.main {
+  /* border: 1px solid rgb(0, 255, 4); */
+  font-family: "Roboto Regular";
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 84%;
+  padding: 1%;
+  gap: 5px;
+  background-color: whitesmoke;
+}
+
+.titlePage {
+  /* border: 1px solid rgb(255, 200, 0); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10%;
+}
+
+.title {
+  font-size: 25px;
+  color: #312f2f;
+  font-family: "Roboto Bold";
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 20px;
+  color: #312f2f;
+  font-family: "Roboto Bold";
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.btn {
+  background-color: #a6d9f7;
+  font-size: 15px;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  width: 80%;
+  font-family: "Roboto Bold";
+  color: white;
+}
+
+.btn:hover {
+  background-color: #84b7d4;
+  cursor: pointer;
+}
+
+.section {
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 90%;
+  padding: 1%;
+  gap: 10px;
+}
+
+.signSection {
+  /* border: 1px solid rgb(0, 179, 255); */
+  width: 40%;
+  height: 80%;
+  padding: 1%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10%;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.mainPassword {
+  /* border: 1px red solid; */
+  width: 80%;
+  display: flex;
+  justify-content: flex-start;
+  gap: 2%;
+  align-items: center;
+  position: relative;
+}
+
+.checkPasswordSection {
+  /* border: 1px red solid; */
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2%;
+}
+
+.checkPasswordLine {
+  /* border: 1px red solid; */
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  gap: 2%;
+  align-items: center;
+  position: relative;
+}
+
+.alert {
+  font-family: "Roboto Italic";
+  font-size: 13px;
+  color: red;
+}
+
+.input {
+  width: 80%;
+  padding: 5px;
+  font-size: 15px;
+  color: black;
+  font-family: "Roboto Regular";
+  border-radius: 5px;
+  border: 1px black solid;
+}
+
+.inputPassword {
+  width: 100%;
+  padding: 5px;
+  font-size: 15px;
+  color: black;
+  font-family: "Roboto Regular";
+  border-radius: 5px;
+  border: 1px black solid;
+}
+
+.icon {
+  color: black;
+  font-size: 15px;
+  width: 15px;
+  transition: 0.2s linear;
+  position: absolute;
+  right: 10px;
+}
+
+.icon:hover {
+  cursor: pointer;
+  width: 17px;
+  font-size: 17px;
+}
+
+.line {
+  border: solid 1px black;
+  height: 80%;
+}
