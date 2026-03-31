@@ -1,0 +1,138 @@
+.content {
+  width: 100%;
+  padding: 0.3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Roboto Regular";
+  gap: 0.2rem;
+  background-color: #0b1788;
+  border-radius: 0.2rem;
+}
+
+.title {
+  font-family: "Roboto Bold";
+  color: white;
+  font-size: 1rem;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 0.1rem;
+  background-color: #ff9a3d;
+  border-radius: 0.1rem;
+}
+
+.sport {
+  color: white;
+  font-family: "Roboto Bold";
+  text-transform: uppercase;
+  font-size: 1rem;
+  text-align: center;
+  padding: 0.1rem;
+}
+
+.milestoneBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.projectLine,
+.indusLine {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.3rem;
+  width: 100%;
+  font-size: 1rem;
+  border-radius: 0.2rem;
+  padding: 0.2rem;
+}
+
+.projectLine {
+  background-color: #10a86b;
+  color: white;
+}
+
+.indusLine {
+  background-color: #ffffff;
+  color: black;
+}
+
+.milestone {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.1rem;
+}
+
+.milestoneSection {
+  margin: 0;
+  font-family: "Roboto SemiBold";
+}
+
+.name {
+  font-family: "Roboto Bold";
+  padding: 0.1rem;
+}
+
+.date {
+  font-family: "Roboto Italic";
+  padding: 0.1rem;
+}
+
+.iconBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.1rem;
+}
+
+.icon {
+  font-size: 1rem;
+  width: 1rem;
+  height: 1rem;
+  color: white;
+}
+
+.icon:hover {
+  color: rgb(206, 202, 202);
+  cursor: pointer;
+  scale: 1.1;
+}
+
+@media (max-width: 768px) {
+  .projectLine,
+  .indusLine,
+  .title,
+  .sport {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .title,
+  .sport {
+    font-size: 0.8rem;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+  }
+  .projectLine,
+  .indusLine {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.75rem;
+    width: 100%;
+  }
+  .milestoneBox {
+    width: 60%;
+  }
+}

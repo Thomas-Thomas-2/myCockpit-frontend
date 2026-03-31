@@ -4,7 +4,7 @@ function FooterTeacher() {
   return (
     <footer className={styles.footer}>
       <div className={styles.content}>
-        <p>My Cockpit</p>
+        <p>My Cockpit for Methods Engineers</p>
       </div>
     </footer>
   );

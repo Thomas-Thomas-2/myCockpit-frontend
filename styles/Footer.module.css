@@ -1,17 +1,25 @@
 .footer {
-  /* border: 1px solid red; */
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 10px;
   height: 8%;
   background-color: #3643ba;
-  width: 100vw;
+  width: 100%;
 }
 
 .content {
   color: white;
-  font-size: 15px;
+  font-size: 1rem;
   font-family: "Roboto Regular";
   font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .content {
+    font-size: 0.8rem;
+  }
+  .footer {
+    height: 5%;
+  }
 }

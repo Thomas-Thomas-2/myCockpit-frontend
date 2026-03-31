@@ -1,0 +1,112 @@
+.palette {
+  color: #3643ba;
+  color: #7affa6;
+  color: #0b1788;
+  color: #10a86b;
+  color: #ff9a3d;
+  color: #c9e136;
+  color: #ff62d3;
+  color: #b66cff;
+  color: #dfe0e1;
+  color: #434343;
+}
+
+.content {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  font-family: "Roboto Regular";
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  flex: 1;
+  padding: 1%;
+  gap: 5px;
+  background-color: whitesmoke;
+}
+
+.titlePage {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  font-size: 1.5rem;
+  color: #312f2f;
+  font-family: "Roboto Bold";
+  letter-spacing: 2px;
+  text-align: center;
+  margin: 0;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  flex: 1;
+  padding: 1%;
+  gap: 5px;
+}
+
+.btn {
+  background-color: #10a86b;
+  font-size: 1rem;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-family: "Roboto Bold";
+  color: white;
+  width: 20%;
+}
+
+.btn:hover {
+  background-color: #0c905b;
+  cursor: pointer;
+}
+
+.projectSection {
+  width: 100%;
+  flex: 1;
+  padding: 1%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: white;
+  border-radius: 5px;
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+.icon {
+  color: white;
+  padding: 0.2rem;
+  font-size: 1.75rem;
+  width: 1.75rem;
+  height: 1.75rem;
+  background-color: #10a86b;
+  border-radius: 1.5rem;
+}
+
+.icon:hover {
+  background-color: #0c905b;
+  cursor: pointer;
+  scale: 1.1;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 1rem;
+  }
+}
