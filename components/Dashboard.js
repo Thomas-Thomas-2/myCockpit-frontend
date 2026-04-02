@@ -57,6 +57,10 @@ export default function Dashboard() {
     }
   };
 
+  const onClose = () => {
+    setModalAddProject(false);
+  };
+
   const handleAddProject = async (projectData) => {
     try {
       const response = await fetch(
@@ -159,7 +163,7 @@ export default function Dashboard() {
       <Footer />
       {modalAddProject && (
         <ModalAddProject
-          onClose={() => setModalAddProject(false)}
+          onClose={onClose}
           handleAddProject={handleAddProject}
         />
       )}

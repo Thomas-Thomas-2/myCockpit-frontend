@@ -61,7 +61,7 @@ export default function ModalAddProject({ onClose, handleAddProject }) {
           <FontAwesomeIcon
             icon={faCircleXmark}
             className={styles.close}
-            onClick={() => onclose()}
+            onClick={onClose}
           />
         </div>
         <div className={styles.content}>
