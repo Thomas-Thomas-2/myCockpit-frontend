@@ -14,7 +14,7 @@ The version deployed currently is the version 1 which is still under constructio
 
 ## Main features
 - User authentication
-- Project management
+- Project management : get projects, add and delete.
 
 ## Tech Stack
 - React
