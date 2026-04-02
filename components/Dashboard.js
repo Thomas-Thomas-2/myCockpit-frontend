@@ -10,51 +10,10 @@ import { useRouter } from "next/router";
 import { checkConnectionNeed } from "../modules/checkConnectioNeed";
 import ModalAddProject from "./ModalAddProject";
 
-// Fake data
-// const projects = [
-//   {
-//     _id: "123456",
-//     title: "Trot cool",
-//     sport: "Freestyle",
-//     slug: "trot_cool",
-//     kickOff: "2023-10-12",
-//     feasiOk: "2023-02-01",
-//     creaOk: "2022-10-01",
-//     selectionOk: "2023-10-15",
-//     shipmentOk: "2023-10-19",
-//     industrialisation: true,
-//     kickOffIndus: "2023-11-01",
-//     goIndus: "2024-10-01",
-//     trialRun: "2023-12-01",
-//     pilotRun: "2023-10-08",
-//     goProd: "2023-08-01",
-//     status: "late",
-//   },
-//   {
-//     _id: "512436",
-//     title: "chaise bien",
-//     sport: "camping",
-//     slug: "chaise_bien",
-//     kickOff: "2023-10-12",
-//     feasiOk: "2023-02-01",
-//     creaOk: "2022-10-01",
-//     selectionOk: "2023-10-15",
-//     shipmentOk: "2023-10-19",
-//     industrialisation: false,
-//     kickOffIndus: null,
-//     goIndus: null,
-//     trialRun: null,
-//     pilotRun: null,
-//     goProd: null,
-//     status: "late",
-//   },
-// ];
-
 export default function Dashboard() {
   const [projects, setProjects] = useState([]);
   const [modalAddProject, setModalAddProject] = useState(false);
   const [username, setUsername] = useState("");
-  const [flag, setFlag] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
@@ -78,7 +37,7 @@ export default function Dashboard() {
         alert("Error to get projects.");
       }
     })();
-  }, [flag]);
+  }, []);
 
   const logout = async () => {
     try {
@@ -90,7 +49,7 @@ export default function Dashboard() {
         },
       );
       if (response.ok) {
-        setFlag(!flag);
+        router.replace("/");
       }
     } catch (error) {
       console.error("Error", error);
@@ -100,7 +59,6 @@ export default function Dashboard() {
 
   const handleAddProject = async (projectData) => {
     try {
-      console.log("test", projectData);
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/projects`,
         {
@@ -127,12 +85,41 @@ export default function Dashboard() {
     }
   };
 
+  const handlePatchProject = async (projectData) => {
+    try {
+      alert("Feature creation ongoing, try later.");
+    } catch (error) {
+      console.error("Error :", error);
+      alert("Error when modifying project.");
+    }
+  };
+
+  const handleDeleteProject = async (projectId) => {
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/projects/${projectId}`,
+        {
+          method: "DELETE",
+          credentials: "include",
+        },
+      );
+
+      const data = await response.json();
+      data.result
+        ? setProjects((elem) => elem.filter((proj) => proj._id !== projectId))
+        : alert(data.error);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      alert("Error while deleting ressources.");
+    }
+  };
+
   const projectsList = projects?.map((data, i) => (
     <ProjectCard
       key={`${data.title}-${i}`}
-      id={data._id}
+      _id={data._id}
       title={data.title}
-      sport={data.sport}
+      sportTeam={data.sportTeam}
       slug={data.slug}
       kickOffDate={data.kickOff}
       feasiDate={data.feasiOk}
@@ -145,6 +132,8 @@ export default function Dashboard() {
       trialRunDate={data.trialRun}
       pilotRunDate={data.pilotRun}
       goProdDate={data.goProd}
+      handlePatchProject={handlePatchProject}
+      handleDeleteProject={handleDeleteProject}
     />
   ));
 
