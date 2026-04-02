@@ -57,8 +57,6 @@ export default function Dashboard() {
   const [flag, setFlag] = useState(true);
   const router = useRouter();
 
-  console.log("projects", projects);
-
   useEffect(() => {
     (async () => {
       const data = await checkConnectionNeed(router);
