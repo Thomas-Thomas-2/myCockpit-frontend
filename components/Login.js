@@ -18,6 +18,7 @@ export default function Login() {
   const [emailSignin, setEmailSignin] = useState("");
   const [passwordSignin, setPasswordSignin] = useState("");
   const [showPwdSignin, setShowPwdSignin] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const router = useRouter();
 
@@ -38,6 +39,7 @@ export default function Login() {
       ) {
         return alert("Input data missing or mistake, please check.");
       } else {
+        setLoading(true);
         const response = await fetch(
           `${process.env.NEXT_PUBLIC_BACKEND_URL}/users/signup`,
           {
@@ -57,8 +59,10 @@ export default function Login() {
         const data = await response.json();
 
         if (data.result) {
+          setLoading(false);
           router.replace("/dashboard");
         } else {
+          setLoading(false);
           alert(`Error : ${data.error}`);
         }
       }
@@ -73,6 +77,7 @@ export default function Login() {
       if (!emailSignin || !passwordSignin) {
         return alert("Input data missing or mistake, please check.");
       } else {
+        setLoading(true);
         const response = await fetch(
           `${process.env.NEXT_PUBLIC_BACKEND_URL}/users/signin`,
           {
@@ -91,8 +96,10 @@ export default function Login() {
         const data = await response.json();
 
         if (data.result) {
+          setLoading(false);
           router.replace("/dashboard");
         } else {
+          setLoading(false);
           alert(`Error : ${data.error}`);
         }
       }
@@ -189,8 +196,12 @@ export default function Login() {
               )}
             </div>
 
-            <button className={styles.btn} onClick={handleSignup}>
-              Sign up
+            <button
+              className={styles.btn}
+              onClick={handleSignup}
+              disabled={loading}
+            >
+              {loading ? "Loading..." : "Sign up"}
             </button>
           </div>
 
@@ -228,10 +239,10 @@ export default function Login() {
             </div>
             <button
               className={styles.btn}
-              // disabled={!passwordSignin || emailSignin}
+              disabled={loading}
               onClick={handleSignin}
             >
-              Sign in
+              {loading ? "Loading..." : "Sign in"}
             </button>
           </div>
         </div>
