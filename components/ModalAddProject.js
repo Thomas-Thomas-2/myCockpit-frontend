@@ -101,7 +101,7 @@ export default function ModalAddProject({ onClose, handleAddProject }) {
               className={styles.selectList}
               type="text"
               value={industrialisation}
-              onChange={(e) => setIndustrialisation(e.target.value)}
+              onChange={(e) => setIndustrialisation(e.target.value === "true")}
             >
               <option value={true}>Yes</option>
               <option value={false}>No</option>
@@ -209,7 +209,7 @@ export default function ModalAddProject({ onClose, handleAddProject }) {
           </div>
 
           <button className={styles.btn} onClick={() => handleClick()}>
-            Ajouter
+            Add project
           </button>
         </div>
       </div>
