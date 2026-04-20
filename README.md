@@ -46,7 +46,7 @@ Watch the demonstration : <br>
 COMING SOON
 
 ## Future improvements
-- To implement project modification and profile modification --> end of V1 ;
+- To implement profile modification --> end of V1 ;
 - To add role management : leader role and teammate role --> a leader can access to the projects of his team ;
 - To-do list and priority adding ;
 - Reinitialise / forget password feature ;
