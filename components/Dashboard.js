@@ -9,55 +9,15 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/router";
 import { checkConnectionNeed } from "../modules/checkConnectioNeed";
 import ModalAddProject from "./ModalAddProject";
-
-// Fake data
-// const projects = [
-//   {
-//     _id: "123456",
-//     title: "Trot cool",
-//     sport: "Freestyle",
-//     slug: "trot_cool",
-//     kickOff: "2023-10-12",
-//     feasiOk: "2023-02-01",
-//     creaOk: "2022-10-01",
-//     selectionOk: "2023-10-15",
-//     shipmentOk: "2023-10-19",
-//     industrialisation: true,
-//     kickOffIndus: "2023-11-01",
-//     goIndus: "2024-10-01",
-//     trialRun: "2023-12-01",
-//     pilotRun: "2023-10-08",
-//     goProd: "2023-08-01",
-//     status: "late",
-//   },
-//   {
-//     _id: "512436",
-//     title: "chaise bien",
-//     sport: "camping",
-//     slug: "chaise_bien",
-//     kickOff: "2023-10-12",
-//     feasiOk: "2023-02-01",
-//     creaOk: "2022-10-01",
-//     selectionOk: "2023-10-15",
-//     shipmentOk: "2023-10-19",
-//     industrialisation: false,
-//     kickOffIndus: null,
-//     goIndus: null,
-//     trialRun: null,
-//     pilotRun: null,
-//     goProd: null,
-//     status: "late",
-//   },
-// ];
+import ModalModifyProject from "./ModalModifyProject";
 
 export default function Dashboard() {
   const [projects, setProjects] = useState([]);
   const [modalAddProject, setModalAddProject] = useState(false);
+  const [modalModifyProject, setModalModifyProject] = useState(false);
   const [username, setUsername] = useState("");
   const [flag, setFlag] = useState(true);
   const router = useRouter();
-
-  console.log("projects", projects);
 
   useEffect(() => {
     (async () => {
@@ -102,7 +62,35 @@ export default function Dashboard() {
 
   const handleAddProject = async (projectData) => {
     try {
-      console.log("test", projectData);
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/projects`,
+        {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(projectData),
+        },
+      );
+
+      const data = await response.json();
+
+      if (data.result) {
+        console.log("data", data);
+        setProjects([...projects, data.project]);
+      } else {
+        alert(`Erreur : ${data.error}`);
+      }
+    } catch (error) {
+      console.error("Error :", error);
+      alert("Error when creating project.");
+    }
+  };
+
+  // To be modified
+  const handleModifyProject = async (projectData) => {
+    try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/projects`,
         {
@@ -174,6 +162,12 @@ export default function Dashboard() {
         <ModalAddProject
           onClose={() => setModalAddProject(false)}
           handleAddProject={handleAddProject}
+        />
+      )}
+      {modalModifyProject && (
+        <ModalModifyProject
+          onClose={() => setModalModifyProject(false)}
+          handleModifyProject={handleModifyProject}
         />
       )}
     </div>
