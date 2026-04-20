@@ -3,22 +3,48 @@ import styles from "../styles/ModalModifyProject.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 
-export default function ModalModifyProject({ onClose, handleModifyProject }) {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [sportTeam, setSportTeam] = useState("");
+export default function ModalModifyProject({
+  onClose,
+  handlePatchProject,
+  projectData,
+}) {
+  const [title, setTitle] = useState(projectData.title);
+  const [description, setDescription] = useState(projectData.description);
+  const [sportTeam, setSportTeam] = useState(projectData.sportTeam);
   //   const [productEngineer, setProductEngineer] = useState("");
-  const [kickOff, setKickOff] = useState("");
-  const [feasiOk, setFeasiOk] = useState("");
-  const [creaOk, setCreaOk] = useState("");
-  const [selectionOk, setSelectionOk] = useState("");
-  const [shipmentOk, setShipmentOk] = useState("");
-  const [industrialisation, setIndustrialisation] = useState(false);
-  const [kickOffIndus, setKickOffIndus] = useState("");
-  const [goIndus, setGoIndus] = useState("");
-  const [trialRun, setTrialRun] = useState("");
-  const [pilotRun, setPilotRun] = useState("");
-  const [goProd, setGoProd] = useState("");
+  const [kickOff, setKickOff] = useState(
+    projectData.kickOffDate ? projectData.kickOffDate.slice(0, 10) : "",
+  );
+  const [feasiOk, setFeasiOk] = useState(
+    projectData.feasiDate ? projectData.feasiDate.slice(0, 10) : "",
+  );
+  const [creaOk, setCreaOk] = useState(
+    projectData.creaDate ? projectData.creaDate.slice(0, 10) : "",
+  );
+  const [selectionOk, setSelectionOk] = useState(
+    projectData.selecDate ? projectData.selecDate.slice(0, 10) : "",
+  );
+  const [shipmentOk, setShipmentOk] = useState(
+    projectData.shipDate ? projectData.shipDate.slice(0, 10) : "",
+  );
+  const [industrialisation, setIndustrialisation] = useState(projectData.indus);
+  const [kickOffIndus, setKickOffIndus] = useState(
+    projectData.kickOffIndusDate
+      ? projectData.kickOffIndusDate.slice(0, 10)
+      : "",
+  );
+  const [goIndus, setGoIndus] = useState(
+    projectData.goIndusDate ? projectData.goIndusDate.slice(0, 10) : "",
+  );
+  const [trialRun, setTrialRun] = useState(
+    projectData.trialRunDate ? projectData.trialRunDate.slice(0, 10) : "",
+  );
+  const [pilotRun, setPilotRun] = useState(
+    projectData.pilotRunDate ? projectData.pilotRunDate.slice(0, 10) : "",
+  );
+  const [goProd, setGoProd] = useState(
+    projectData.goProdDate ? projectData.goProdDate.slice(0, 10) : "",
+  );
 
   const handleClick = () => {
     if (
@@ -32,7 +58,8 @@ export default function ModalModifyProject({ onClose, handleModifyProject }) {
     ) {
       alert("Input data missing.");
     } else {
-      const projectData = {
+      const projectInformation = {
+        _id: projectData._id,
         title,
         sportTeam,
         description,
@@ -48,7 +75,7 @@ export default function ModalModifyProject({ onClose, handleModifyProject }) {
         pilotRun,
         goProd,
       };
-      handleModifyProject(projectData);
+      handlePatchProject(projectInformation);
       onClose();
     }
   };
@@ -61,7 +88,7 @@ export default function ModalModifyProject({ onClose, handleModifyProject }) {
           <FontAwesomeIcon
             icon={faCircleXmark}
             className={styles.close}
-            onClick={() => onclose()}
+            onClick={onClose}
           />
         </div>
         <div className={styles.content}>
@@ -209,7 +236,7 @@ export default function ModalModifyProject({ onClose, handleModifyProject }) {
           </div>
 
           <button className={styles.btn} onClick={() => handleClick()}>
-            Ajouter
+            Modify project
           </button>
         </div>
       </div>

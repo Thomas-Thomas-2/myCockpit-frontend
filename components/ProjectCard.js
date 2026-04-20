@@ -97,7 +97,7 @@ export default function ProjectCard(props) {
         <FontAwesomeIcon
           icon={faRotate}
           className={styles.icon}
-          onClick={() => props.handlePatchProject(props)}
+          onClick={() => props.openModalModify(props)}
         />
         <FontAwesomeIcon
           icon={faTrash}
