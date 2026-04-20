@@ -58,7 +58,7 @@
 .icon:hover {
   color: #3643ba;
   cursor: pointer;
-  scale: 1.1;
+  scale: 1.2;
 }
 
 @media (max-width: 768px) {

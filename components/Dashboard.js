@@ -16,7 +16,6 @@ export default function Dashboard() {
   const [modalAddProject, setModalAddProject] = useState(false);
   const [modalModifyProject, setModalModifyProject] = useState(false);
   const [username, setUsername] = useState("");
-  const [flag, setFlag] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
@@ -40,7 +39,7 @@ export default function Dashboard() {
         alert("Error to get projects.");
       }
     })();
-  }, [flag]);
+  }, []);
 
   const logout = async () => {
     try {
@@ -52,12 +51,16 @@ export default function Dashboard() {
         },
       );
       if (response.ok) {
-        setFlag(!flag);
+        router.replace("/");
       }
     } catch (error) {
       console.error("Error", error);
       alert("Server error");
     }
+  };
+
+  const onClose = () => {
+    setModalAddProject(false);
   };
 
   const handleAddProject = async (projectData) => {
@@ -88,41 +91,41 @@ export default function Dashboard() {
     }
   };
 
-  // To be modified
-  const handleModifyProject = async (projectData) => {
+  const handlePatchProject = async (projectData) => {
+    try {
+      alert("Feature creation ongoing, try later.");
+    } catch (error) {
+      console.error("Error :", error);
+      alert("Error when modifying project.");
+    }
+  };
+
+  const handleDeleteProject = async (projectId) => {
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/projects`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/projects/${projectId}`,
         {
-          method: "POST",
+          method: "DELETE",
           credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(projectData),
         },
       );
 
       const data = await response.json();
-
-      if (data.result) {
-        console.log("data", data);
-        setProjects([...projects, data.project]);
-      } else {
-        alert(`Erreur : ${data.error}`);
-      }
+      data.result
+        ? setProjects((elem) => elem.filter((proj) => proj._id !== projectId))
+        : alert(data.error);
     } catch (error) {
-      console.error("Error :", error);
-      alert("Error when creating project.");
+      console.error("Error fetching data:", error);
+      alert("Error while deleting ressources.");
     }
   };
 
   const projectsList = projects?.map((data, i) => (
     <ProjectCard
       key={`${data.title}-${i}`}
-      id={data._id}
+      _id={data._id}
       title={data.title}
-      sport={data.sport}
+      sportTeam={data.sportTeam}
       slug={data.slug}
       kickOffDate={data.kickOff}
       feasiDate={data.feasiOk}
@@ -135,6 +138,8 @@ export default function Dashboard() {
       trialRunDate={data.trialRun}
       pilotRunDate={data.pilotRun}
       goProdDate={data.goProd}
+      handlePatchProject={handlePatchProject}
+      handleDeleteProject={handleDeleteProject}
     />
   ));
 
@@ -160,7 +165,7 @@ export default function Dashboard() {
       <Footer />
       {modalAddProject && (
         <ModalAddProject
-          onClose={() => setModalAddProject(false)}
+          onClose={onClose}
           handleAddProject={handleAddProject}
         />
       )}
