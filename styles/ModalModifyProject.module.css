@@ -1,0 +1,157 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.card {
+  width: 60%;
+  border-radius: 0.6rem;
+  background: whitesmoke;
+  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.55);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.top {
+  background-color: #3643ba;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.3rem 0.3rem;
+}
+
+.titleModal {
+  font-family: "Roboto Bold";
+  font-size: 1.2rem;
+  color: white;
+  margin: 0;
+}
+
+.close {
+  color: white;
+  font-size: 1.1rem;
+  width: 1.1rem;
+  height: 1.1rem;
+  background-color: transparent;
+}
+
+.close:hover {
+  color: #3e3e3e;
+  cursor: pointer;
+  scale: 1.1;
+}
+
+.content {
+  width: 100%;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.topBlock {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.middleBlock {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.indusBlock {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.input {
+  flex: 1;
+  padding: 0.2rem;
+  border-radius: 0.3rem;
+  border: 1px solid rgb(160, 160, 160);
+  background-color: white;
+  font-family: "Roboto Regular";
+  font-size: 0.9rem;
+}
+
+.input:hover {
+  cursor: text;
+}
+
+.subtitle,
+.legend {
+  font-weight: 100;
+  font-size: 1rem;
+  color: black;
+}
+.subtitle {
+  font-family: "Roboto Regular";
+}
+.legend {
+  font-family: "Roboto Italic";
+  color: #3643ba;
+  display: flex;
+  gap: 0.2rem;
+  align-items: center;
+}
+
+.bottomBlock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  gap: 0.3rem;
+}
+
+.projectSection,
+.indusSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+}
+
+.selectList {
+  width: 15%;
+  padding: 0.3rem;
+  border-radius: 0.3rem;
+  border: 1px solid rgb(160, 160, 160);
+  background-color: white;
+  font-family: "Roboto Regular";
+  font-size: 1rem;
+}
+
+.btn {
+  background-color: #10a86b;
+  color: white;
+  border: none;
+  border-radius: 0.3rem;
+  padding: 0.2rem 0.3rem;
+  width: 90%;
+  font-family: "Roboto Bold";
+  font-size: 1rem;
+}
+
+.btn:hover {
+  background: #0c8253;
+  cursor: pointer;
+}

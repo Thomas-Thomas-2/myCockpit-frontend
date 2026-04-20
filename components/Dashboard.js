@@ -9,10 +9,13 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/router";
 import { checkConnectionNeed } from "../modules/checkConnectioNeed";
 import ModalAddProject from "./ModalAddProject";
+import ModalModifyProject from "./ModalModifyProject";
 
 export default function Dashboard() {
   const [projects, setProjects] = useState([]);
   const [modalAddProject, setModalAddProject] = useState(false);
+  const [modalModifyProject, setModalModifyProject] = useState(false);
+  const [projectDataPatch, setProjectDataPatch] = useState({});
   const [username, setUsername] = useState("");
   const router = useRouter();
 
@@ -78,10 +81,9 @@ export default function Dashboard() {
       const data = await response.json();
 
       if (data.result) {
-        console.log("data", data);
         setProjects([...projects, data.project]);
       } else {
-        alert(`Erreur : ${data.error}`);
+        alert(`Error : ${data.error}`);
       }
     } catch (error) {
       console.error("Error :", error);
@@ -89,9 +91,36 @@ export default function Dashboard() {
     }
   };
 
+  const openModalModify = (projectData) => {
+    setProjectDataPatch(projectData);
+    setModalModifyProject(true);
+  };
+
   const handlePatchProject = async (projectData) => {
     try {
-      alert("Feature creation ongoing, try later.");
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/projects/${projectData._id}`,
+        {
+          method: "PATCH",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(projectData),
+        },
+      );
+
+      const data = await response.json();
+
+      if (data.result) {
+        setProjects((projects) =>
+          projects.map((proj) =>
+            proj._id === data.project._id ? data.project : proj,
+          ),
+        );
+      } else {
+        alert(`Error : ${data.error}`);
+      }
     } catch (error) {
       console.error("Error :", error);
       alert("Error when modifying project.");
@@ -136,7 +165,7 @@ export default function Dashboard() {
       trialRunDate={data.trialRun}
       pilotRunDate={data.pilotRun}
       goProdDate={data.goProd}
-      handlePatchProject={handlePatchProject}
+      openModalModify={openModalModify}
       handleDeleteProject={handleDeleteProject}
     />
   ));
@@ -165,6 +194,13 @@ export default function Dashboard() {
         <ModalAddProject
           onClose={onClose}
           handleAddProject={handleAddProject}
+        />
+      )}
+      {modalModifyProject && (
+        <ModalModifyProject
+          onClose={() => setModalModifyProject(false)}
+          handlePatchProject={handlePatchProject}
+          projectData={projectDataPatch}
         />
       )}
     </div>

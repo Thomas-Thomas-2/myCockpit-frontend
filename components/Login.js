@@ -22,6 +22,8 @@ export default function Login() {
 
   const router = useRouter();
 
+  console.log("Dev branch");
+
   useEffect(() => {
     (async () => {
       await checkConnectionNeed(router);
