@@ -14,7 +14,7 @@ const checkConnectionNeed = async (router) => {
       router.replace("/");
     } else {
       router.replace("/dashboard");
-      return data.username;
+      return data;
     }
   } catch (error) {
     console.error("Server error", error);

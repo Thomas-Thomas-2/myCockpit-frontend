@@ -124,6 +124,23 @@
   color: red;
 }
 
+.boxSection {
+  width: 80%;
+  padding: 5px;
+  font-size: 1rem;
+  color: black;
+  font-family: "Roboto Regular";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.box {
+  accent-color: #10a86b;
+  margin: 0 0.5rem;
+  width: 1.5rem;
+}
+
 .input {
   width: 80%;
   padding: 5px;
@@ -182,7 +199,8 @@
   .subtitle,
   .btn,
   .input,
-  .inputPassword {
+  .inputPassword,
+  .boxSection {
     font-size: 0.8rem;
   }
 }

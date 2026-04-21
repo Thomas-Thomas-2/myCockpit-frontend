@@ -8,6 +8,8 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/router";
 import { checkConnectionNeed } from "../modules/checkConnectioNeed";
 
+const teams = ["Metal", "Plastic", "Transmissions", "Frame", "Foam", "Other"];
+
 export default function Login() {
   const [username, setUsername] = useState("");
   const [emailSignup, setEmailSignup] = useState("");
@@ -19,10 +21,10 @@ export default function Login() {
   const [passwordSignin, setPasswordSignin] = useState("");
   const [showPwdSignin, setShowPwdSignin] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [team, setTeam] = useState("");
+  const [leader, setLeader] = useState(false);
 
   const router = useRouter();
-
-  console.log("Dev branch");
 
   useEffect(() => {
     (async () => {
@@ -37,7 +39,8 @@ export default function Login() {
         !emailSignup ||
         !passwordSignup ||
         !passwordSignupConfirm ||
-        passwordSignup !== passwordSignupConfirm
+        passwordSignup !== passwordSignupConfirm ||
+        !team
       ) {
         return alert("Input data missing or mistake, please check.");
       } else {
@@ -54,6 +57,8 @@ export default function Login() {
               username,
               email: emailSignup,
               password: passwordSignup,
+              team,
+              leader: String(leader),
             }),
           },
         );
@@ -111,6 +116,12 @@ export default function Login() {
     }
   };
 
+  const teamList = teams.map((data, i) => (
+    <option key={`${data}-${i}`} value={data}>
+      {data}
+    </option>
+  ));
+
   return (
     <div className={styles.content}>
       <Head>
@@ -139,6 +150,32 @@ export default function Login() {
               maxLength={20}
               onChange={(e) => setUsername(e.target.value)}
             />
+
+            <select
+              className={styles.input}
+              type="text"
+              value={team}
+              onChange={(e) => setTeam(e.target.value)}
+            >
+              <option value="">Select your team</option>
+              {teamList}
+            </select>
+
+            <div className={styles.boxSection}>
+              <input
+                className={styles.box}
+                type="checkbox"
+                id="roleId"
+                name="role"
+                checked={leader}
+                onChange={(e) => {
+                  console.log("leader", e.target.checked);
+                  setLeader(e.target.checked);
+                }}
+              />
+              <label htmlFor="roleId">Are you team leader ?</label>
+            </div>
+
             <input
               className={styles.input}
               type="email"
