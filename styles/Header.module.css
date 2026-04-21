@@ -12,7 +12,8 @@
 
 .logo:hover {
   cursor: pointer;
-  scale: 1.1;
+  scale: 1.2;
+  transition: 0.3s ease;
 }
 
 .menu {
@@ -34,7 +35,7 @@
 
 .profile {
   background-color: #dfe0e1;
-  padding: 5px 10px;
+  padding: 0.3rem 0.5rem;
   border-radius: 5px;
   display: flex;
   justify-content: space-between;
@@ -53,12 +54,13 @@
   color: black;
   width: 1rem;
   height: 1rem;
+  transition: 0.3s ease;
 }
 
 .icon:hover {
   color: #3643ba;
   cursor: pointer;
-  scale: 1.2;
+  scale: 1.4;
 }
 
 @media (max-width: 768px) {

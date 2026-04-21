@@ -7,10 +7,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import styles from "../styles/Header.module.css";
 
-export default function Header({ login, username, logout }) {
+export default function Header({ login, username, logout, team, leader }) {
   const handleClick = () => {
     logout();
   };
+
+  const content = (
+    <div>
+      <p>Team : {team}</p>
+      <p>Leader : {leader ? "Yes" : "No"}</p>
+    </div>
+  );
 
   return (
     <header className={styles.content}>

@@ -5,7 +5,7 @@ import Header from "./Header";
 import Head from "next/head";
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faPeopleArrows } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/router";
 import { checkConnectionNeed } from "../modules/checkConnectioNeed";
 import ModalAddProject from "./ModalAddProject";
@@ -17,13 +17,17 @@ export default function Dashboard() {
   const [modalModifyProject, setModalModifyProject] = useState(false);
   const [projectDataPatch, setProjectDataPatch] = useState({});
   const [username, setUsername] = useState("");
+  const [team, setTeam] = useState("");
+  const [leader, setLeader] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
     (async () => {
       const data = await checkConnectionNeed(router);
       if (data) {
-        setUsername(data);
+        setUsername(data.username);
+        setTeam(data.team);
+        setLeader(data.leader);
       }
       try {
         const response = await fetch(
@@ -181,11 +185,36 @@ export default function Dashboard() {
           <p className={styles.title}>FOLLOW MY PROJECTS</p>
         </div>
         <div className={styles.section}>
-          <FontAwesomeIcon
-            icon={faPlus}
-            className={styles.icon}
-            onClick={() => setModalAddProject(true)}
-          />
+          <div className={styles.info}>
+            <button
+              type="button"
+              className={styles.btn}
+              title="Add project"
+              aria-label="Add project"
+            >
+              <FontAwesomeIcon
+                icon={faPlus}
+                className={styles.icon}
+                onClick={() => setModalAddProject(true)}
+              />
+            </button>
+            <p className={styles.infoText}>My team : {team}</p>
+            <p className={styles.infoText}>
+              My role : {leader ? "Leader" : "Teammate"}
+            </p>
+            <button
+              type="button"
+              className={styles.btn}
+              title="Change role (leader/teammate)"
+              aria-label="Change role (leader/teammate)"
+            >
+              <FontAwesomeIcon
+                icon={faPeopleArrows}
+                className={styles.changeRoleIcon}
+                onClick={() => alert("Feature development ongoing")}
+              />
+            </button>
+          </div>
           <div className={styles.projectSection}>{projectsList}</div>
         </div>
       </main>
