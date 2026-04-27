@@ -46,8 +46,8 @@ Watch the demonstration : <br>
 COMING SOON
 
 ## Future improvements
+- Switch to TypeScript ;
 - To implement profile modification --> end of V1 ;
-- To add role management : leader role and teammate role --> a leader can access to the projects of his team ;
 - To-do list and priority adding ;
 - Reinitialise / forget password feature ;
 - One page per project feature --> to access to detailed information regarding projects and to modify it.
