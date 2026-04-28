@@ -103,7 +103,7 @@ export default function Dashboard() {
   const handlePatchProject = async (projectData) => {
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/projects/${projectData._id}`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/projects/${projectData.id}`,
         {
           method: "PATCH",
           credentials: "include",
@@ -119,7 +119,7 @@ export default function Dashboard() {
       if (data.result) {
         setProjects((projects) =>
           projects.map((proj) =>
-            proj._id === data.project._id ? data.project : proj,
+            proj.id === data.project.id ? data.project : proj,
           ),
         );
       } else {
@@ -143,7 +143,7 @@ export default function Dashboard() {
 
       const data = await response.json();
       data.result
-        ? setProjects((elem) => elem.filter((proj) => proj._id !== projectId))
+        ? setProjects((elem) => elem.filter((proj) => proj.id !== projectId))
         : alert(data.error);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -154,7 +154,7 @@ export default function Dashboard() {
   const projectsList = projects?.map((data, i) => (
     <ProjectCard
       key={`${data.title}-${i}`}
-      _id={data._id}
+      id={data.id}
       title={data.title}
       sportTeam={data.sportTeam}
       slug={data.slug}
