@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "../styles/ModalModifyProject.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
+import moment from "moment";
 
 export default function ModalModifyProject({
   onClose,
@@ -13,37 +14,55 @@ export default function ModalModifyProject({
   const [sportTeam, setSportTeam] = useState(projectData.sportTeam);
   //   const [productEngineer, setProductEngineer] = useState("");
   const [kickOff, setKickOff] = useState(
-    projectData.kickOffDate ? projectData.kickOffDate.slice(0, 10) : "",
+    projectData.kickOffDate
+      ? moment(projectData.kickOffDate).format("YYYY-MM-DD")
+      : "",
   );
   const [feasiOk, setFeasiOk] = useState(
-    projectData.feasiDate ? projectData.feasiDate.slice(0, 10) : "",
+    projectData.feasiDate
+      ? moment(projectData.feasiDate).format("YYYY-MM-DD")
+      : "",
   );
   const [creaOk, setCreaOk] = useState(
-    projectData.creaDate ? projectData.creaDate.slice(0, 10) : "",
+    projectData.creaDate
+      ? moment(projectData.creaDate).format("YYYY-MM-DD")
+      : "",
   );
   const [selectionOk, setSelectionOk] = useState(
-    projectData.selecDate ? projectData.selecDate.slice(0, 10) : "",
+    projectData.selecDate
+      ? moment(projectData.selecDate).format("YYYY-MM-DD")
+      : "",
   );
   const [shipmentOk, setShipmentOk] = useState(
-    projectData.shipDate ? projectData.shipDate.slice(0, 10) : "",
+    projectData.shipDate
+      ? moment(projectData.shipDate).format("YYYY-MM-DD")
+      : "",
   );
   const [industrialisation, setIndustrialisation] = useState(projectData.indus);
   const [kickOffIndus, setKickOffIndus] = useState(
     projectData.kickOffIndusDate
-      ? projectData.kickOffIndusDate.slice(0, 10)
+      ? moment(projectData.kickOffIndusDate).format("YYYY-MM-DD")
       : "",
   );
   const [goIndus, setGoIndus] = useState(
-    projectData.goIndusDate ? projectData.goIndusDate.slice(0, 10) : "",
+    projectData.goIndusDate
+      ? moment(projectData.goIndusDate).format("YYYY-MM-DD")
+      : "",
   );
   const [trialRun, setTrialRun] = useState(
-    projectData.trialRunDate ? projectData.trialRunDate.slice(0, 10) : "",
+    projectData.trialRunDate
+      ? moment(projectData.trialRunDate).format("YYYY-MM-DD")
+      : "",
   );
   const [pilotRun, setPilotRun] = useState(
-    projectData.pilotRunDate ? projectData.pilotRunDate.slice(0, 10) : "",
+    projectData.pilotRunDate
+      ? moment(projectData.pilotRunDate).format("YYYY-MM-DD")
+      : "",
   );
   const [goProd, setGoProd] = useState(
-    projectData.goProdDate ? projectData.goProdDate.slice(0, 10) : "",
+    projectData.goProdDate
+      ? moment(projectData.goProdDate).format("YYYY-MM-DD")
+      : "",
   );
 
   const handleClick = () => {
@@ -59,7 +78,7 @@ export default function ModalModifyProject({
       alert("Input data missing.");
     } else {
       const projectInformation = {
-        _id: projectData._id,
+        id: projectData.id,
         title,
         sportTeam,
         description,

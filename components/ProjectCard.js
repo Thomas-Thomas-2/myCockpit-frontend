@@ -102,7 +102,7 @@ export default function ProjectCard(props) {
         <FontAwesomeIcon
           icon={faTrash}
           className={styles.icon}
-          onClick={() => props.handleDeleteProject(props._id)}
+          onClick={() => props.handleDeleteProject(props.id)}
         />
       </div>
     </div>
