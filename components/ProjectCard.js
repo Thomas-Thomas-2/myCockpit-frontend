@@ -9,6 +9,9 @@ import moment from "moment";
 export default function ProjectCard(props) {
   return (
     <div className={styles.content}>
+      {props.username && (
+        <div className={styles.username}>{props.username}</div>
+      )}
       <div className={styles.title}>{props.title}</div>
       <div className={styles.sport}>{props.sportTeam}</div>
       <div className={styles.milestoneBox}>

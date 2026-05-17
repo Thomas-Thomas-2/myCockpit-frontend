@@ -19,6 +19,7 @@ export default function Dashboard() {
   const [username, setUsername] = useState("");
   const [team, setTeam] = useState("");
   const [leader, setLeader] = useState(false);
+  const [flag, setFlag] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -44,7 +45,7 @@ export default function Dashboard() {
         alert("Error to get projects.");
       }
     })();
-  }, []);
+  }, [flag]);
 
   const logout = async () => {
     try {
@@ -151,6 +152,24 @@ export default function Dashboard() {
     }
   };
 
+  const changeRole = async () => {
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/users/role`,
+        {
+          method: "PATCH",
+          credentials: "include",
+        },
+      );
+
+      const data = await response.json();
+      data.result ? setFlag(!flag) : alert(data.error);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      alert("Error while modifying role.");
+    }
+  };
+
   const projectsList = projects?.map((data, i) => (
     <ProjectCard
       key={`${data.title}-${i}`}
@@ -171,6 +190,7 @@ export default function Dashboard() {
       goProdDate={data.goProd}
       openModalModify={openModalModify}
       handleDeleteProject={handleDeleteProject}
+      username={data.username}
     />
   ));
 
@@ -211,7 +231,7 @@ export default function Dashboard() {
               <FontAwesomeIcon
                 icon={faPeopleArrows}
                 className={styles.changeRoleIcon}
-                onClick={() => alert("Feature development ongoing")}
+                onClick={() => changeRole()}
               />
             </button>
           </div>
