@@ -23,7 +23,7 @@ export default function Header({ login, username, logout, team, leader }) {
     <header className={styles.content}>
       <div className={styles.logo}>
         <Link href="/" className={styles.logoLink}>
-          <Image src="/favicon_test_1.ico" alt="Logo" width={35} height={35} />
+          <Image src="/favicon_test.svg" alt="Logo" width={35} height={35} />
         </Link>
       </div>
       <div className={styles.menu}>
@@ -32,11 +32,18 @@ export default function Header({ login, username, logout, team, leader }) {
             <div className={styles.nav}></div>
             <div className={styles.profile}>
               <span className={styles.username}>{username || "-"}</span>
-              <FontAwesomeIcon
-                icon={faArrowRightFromBracket}
-                className={styles.icon}
-                onClick={() => handleClick()}
-              />
+              <button
+                type="button"
+                className={styles.btn}
+                title="Log out"
+                aria-label="Log out"
+              >
+                <FontAwesomeIcon
+                  icon={faArrowRightFromBracket}
+                  className={styles.icon}
+                  onClick={() => handleClick()}
+                />
+              </button>
             </div>
           </>
         )}

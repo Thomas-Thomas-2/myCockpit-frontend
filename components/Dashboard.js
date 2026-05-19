@@ -173,7 +173,7 @@ export default function Dashboard() {
   const projectsList = projects?.map((data, i) => (
     <ProjectCard
       key={`${data.title}-${i}`}
-      id={data.id}
+      id={data.project_id}
       title={data.title}
       sportTeam={data.sportTeam}
       slug={data.slug}
@@ -188,6 +188,7 @@ export default function Dashboard() {
       trialRunDate={data.trialRun}
       pilotRunDate={data.pilotRun}
       goProdDate={data.goProd}
+      status={data.status}
       openModalModify={openModalModify}
       handleDeleteProject={handleDeleteProject}
       username={data.username}
@@ -202,7 +203,7 @@ export default function Dashboard() {
       <Header login={false} username={username} logout={logout} />
       <main className={styles.main}>
         <div className={styles.titlePage}>
-          <p className={styles.title}>FOLLOW MY PROJECTS</p>
+          <p className={styles.title}>DASHBOARD</p>
         </div>
         <div className={styles.section}>
           <div className={styles.info}>
@@ -235,7 +236,35 @@ export default function Dashboard() {
               />
             </button>
           </div>
-          <div className={styles.projectSection}>{projectsList}</div>
+          <div className={styles.projectSection}>
+            <div className={styles.headersTable}>
+              <div className={styles.head}>Owner</div>
+              <div className={styles.head}>Title</div>
+              <div className={styles.head}>Sport team</div>
+              <div className={styles.head}>
+                Kick-off
+                <span className={styles.indusHead}>Kick-Off Indus</span>
+              </div>
+              <div className={styles.head}>
+                Feasibility OK
+                <span className={styles.indusHead}>Go Indus</span>
+              </div>
+              <div className={styles.head}>
+                Creation OK
+                <span className={styles.indusHead}>Trial Run</span>
+              </div>
+              <div className={styles.head}>
+                Selection OK
+                <span className={styles.indusHead}>Pilot Run</span>
+              </div>
+              <div className={styles.head}>
+                Shipment OK
+                <span className={styles.indusHead}>Go Prod</span>
+              </div>
+              <div className={styles.head}>Status</div>
+            </div>
+            <div className={styles.projectsList}>{projectsList}</div>
+          </div>
         </div>
       </main>
       <Footer />

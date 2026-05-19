@@ -27,7 +27,7 @@
   flex: 1;
   padding: 1%;
   gap: 5px;
-  background-color: whitesmoke;
+  background-color: white;
 }
 
 .titlePage {
@@ -76,10 +76,44 @@
   border: none;
 }
 
+.headersTable {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 2fr repeat(8, minmax(0, 1fr));
+  padding: 0.5rem;
+  background-color: whitesmoke;
+  color: black;
+  font-family: "Roboto SemiBold";
+  font-size: 0.9rem;
+}
+
+.head {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.indusHead {
+  color: #ff9a3d;
+}
+
 .projectSection {
   width: 100%;
   flex: 1;
   padding: 1%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.2rem;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.projectsList {
+  width: 100%;
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -98,23 +132,23 @@
   font-size: 1.75rem;
   width: 1.75rem;
   height: 1.75rem;
-  background-color: #10a86b;
+  background-color: #3643ba;
   border-radius: 1.5rem;
   transition: 0.3s ease;
 }
 
 .icon:hover {
-  background-color: #0c905b;
+  background-color: #262f85;
   cursor: pointer;
   scale: 1.4;
 }
 
 .changeRoleIcon {
-  color: #10a86b;
+  color: #3643ba;
   padding: 0.2rem;
-  font-size: 1.75rem;
-  width: 1.75rem;
-  height: 1.75rem;
+  font-size: 2rem;
+  width: 2rem;
+  height: 2rem;
   transition: 0.3s ease;
 }
 
@@ -128,7 +162,8 @@
     font-size: 1rem;
   }
 
-  .infoText {
+  .infoText,
+  .head {
     font-size: 0.75rem;
   }
 

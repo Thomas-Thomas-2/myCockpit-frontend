@@ -27,7 +27,7 @@
   flex: 1;
   padding: 0.3rem;
   gap: 0.5rem;
-  background-color: whitesmoke;
+  background-color: white;
 }
 
 .titlePage {
@@ -54,7 +54,7 @@
 }
 
 .btn {
-  background-color: #10a86b;
+  background-color: #3643ba;
   font-size: 1.25rem;
   border: none;
   padding: 0.2rem 0.4rem;
@@ -65,7 +65,7 @@
 }
 
 .btn:hover {
-  background-color: #0d8454;
+  background-color: #273084;
   cursor: pointer;
 }
 
@@ -141,7 +141,7 @@
 }
 
 .box {
-  accent-color: #10a86b;
+  accent-color: #3643ba;
   margin: 0 0.5rem;
   width: 1.5rem;
 }

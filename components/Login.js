@@ -169,7 +169,6 @@ export default function Login() {
                 name="role"
                 checked={leader}
                 onChange={(e) => {
-                  console.log("leader", e.target.checked);
                   setLeader(e.target.checked);
                 }}
               />
