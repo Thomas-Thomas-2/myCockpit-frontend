@@ -43,12 +43,13 @@ NEXT_PUBLIC_BACKEND_URL=http://localhost:3000
 This frontend is deployed on Vercel : https://my-cockpit-frontend.vercel.app
 
 ## Demo
-Watch the demonstration : <br>
-COMING SOON
+Sign-in and sign-up page :
+![Signin - Signup](public/signin.png)
 
 ## Future improvements
 - Switch to TypeScript ;
-- To implement profile modification --> end of V1 ;
+- Filtering optimisation ;
+- To implement profile modification ;
 - To-do list and priority adding ;
 - Reinitialise / forget password feature ;
-- One page per project feature --> to access to detailed information regarding projects and to modify it.
+- KPI page : % of late projects, average Time To Indus (TTI), number of projects by sport.
