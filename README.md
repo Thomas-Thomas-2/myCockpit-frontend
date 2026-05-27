@@ -44,7 +44,13 @@ This frontend is deployed on Vercel : https://my-cockpit-frontend.vercel.app
 
 ## Demo
 Sign-in and sign-up page :
-![Signin - Signup](public/signin.png)
+![Signin - Signup](public/signin.png) 
+Teammate dashboard :
+![Teammate dashboard](public/dash_teammate.png)
+Leader dashboard :
+![Leader dashboard](public/leader_dash.png)
+Projects filtering :
+![Filtering](public/lead-filter.png)
 
 ## Future improvements
 - Switch to TypeScript ;
