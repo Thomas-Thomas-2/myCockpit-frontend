@@ -3,7 +3,11 @@ import styles from "../styles/ModalAddProject.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 
-export default function ModalAddProject({ onClose, handleAddProject }) {
+export default function ModalAddProject({
+  onClose,
+  handleAddProject,
+  sportTeams,
+}) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [sportTeam, setSportTeam] = useState("");
@@ -53,6 +57,12 @@ export default function ModalAddProject({ onClose, handleAddProject }) {
     }
   };
 
+  const sportTeamsList = sportTeams.map((data, i) => (
+    <option key={`${data}-${i}`} value={data}>
+      {data}
+    </option>
+  ));
+
   return (
     <div className={styles.overlay} onClick={onClose}>
       <div className={styles.card} onClick={(e) => e.stopPropagation()}>
@@ -74,14 +84,16 @@ export default function ModalAddProject({ onClose, handleAddProject }) {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
-            <input
+
+            <select
               className={styles.input}
               type="text"
-              placeholder="Sport team"
-              maxLength="15"
               value={sportTeam}
               onChange={(e) => setSportTeam(e.target.value)}
-            />
+            >
+              <option value="">Sport team</option>
+              {sportTeamsList}
+            </select>
           </div>
           <div className={styles.middleBlock}>
             <input

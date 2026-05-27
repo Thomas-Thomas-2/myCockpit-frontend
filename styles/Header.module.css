@@ -23,9 +23,8 @@
 }
 
 .menu {
-  /* border: 1px solid greenyellow; */
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   gap: 10px;
   height: 100%;
@@ -34,9 +33,26 @@
 .nav {
   /* border: 1px solid rgb(0, 179, 255); */
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   gap: 20px;
+}
+
+.pageTitle {
+  color: black;
+  font-family: "Roboto SemiBold";
+  font-size: 1rem;
+  cursor: pointer;
+  padding-bottom: 0.3rem;
+}
+
+.pageTitle:hover {
+  color: #3643ba;
+  transition: 0.3s ease;
+}
+
+.active {
+  border-bottom: 3px solid #3643ba;
 }
 
 .profile {
@@ -56,21 +72,26 @@
 }
 
 .icon {
-  font-size: 1rem;
+  font-size: 1.5rem;
   color: #3643ba;
-  width: 1rem;
-  height: 1rem;
+  width: 1.5rem;
+  height: 1.5rem;
   transition: 0.3s ease;
 }
 
 .icon:hover {
   color: #242d7e;
   cursor: pointer;
-  scale: 1.4;
+  scale: 1.2;
 }
 
 @media (max-width: 768px) {
   .content {
     height: 5%;
+  }
+
+  .username,
+  .pageTitle {
+    font-size: 0.8rem;
   }
 }

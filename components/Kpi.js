@@ -1,5 +1,4 @@
-import styles from "../styles/Dashboard.module.css";
-import ProjectCard from "./ProjectCard";
+import styles from "../styles/Kpi.module.css";
 import Footer from "./Footer";
 import Header from "./Header";
 import Head from "next/head";
@@ -8,20 +7,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faPeopleArrows } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/router";
 import { checkConnectionNeed } from "../modules/checkConnectioNeed";
-import ModalAddProject from "./ModalAddProject";
-import ModalModifyProject from "./ModalModifyProject";
 
-const sportTeams = [
-  "Freestyle",
-  "Camping",
-  "Football",
-  "Basketball",
-  "Fitness",
-  "Table tennis",
-  "Other",
-];
-
-export default function Dashboard() {
+export default function Kpi() {
   const [projects, setProjects] = useState([]);
   const [modalAddProject, setModalAddProject] = useState(false);
   const [modalModifyProject, setModalModifyProject] = useState(false);
@@ -32,7 +19,6 @@ export default function Dashboard() {
   const [flag, setFlag] = useState(false);
   const [statusFilter, setStatusFilter] = useState("status");
   const [sportFilter, setSportFilter] = useState("sport");
-  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -44,7 +30,6 @@ export default function Dashboard() {
         setLeader(data.leader);
       }
       try {
-        setLoading(true);
         const response = await fetch(
           `${process.env.NEXT_PUBLIC_BACKEND_URL}/projects`,
           {
@@ -54,7 +39,6 @@ export default function Dashboard() {
         );
         const data = await response.json();
         data.result ? setProjects(data.projects) : alert(data.error);
-        setLoading(false);
       } catch (error) {
         console.error("Error", error);
         alert("Error to get projects.");
@@ -101,7 +85,7 @@ export default function Dashboard() {
       const data = await response.json();
 
       if (data.result) {
-        setProjects([...projects, { ...data.project, username }]);
+        setProjects([...projects, data.project]);
       } else {
         alert(`Error : ${data.error}`);
       }
@@ -193,149 +177,28 @@ export default function Dashboard() {
     return checkStatus && checkSport;
   });
 
-  const sportTeamsList = sportTeams.map((data, i) => (
-    <option key={`${data}-${i}`} value={data.toLowerCase()}>
-      {data}
-    </option>
-  ));
-
-  const projectsList = filteredProjects?.map((data, i) => (
-    <ProjectCard
-      key={`${data.title}-${i}`}
-      id={data.project_id}
-      title={data.title}
-      sportTeam={data.sportTeam}
-      slug={data.slug}
-      kickOffDate={data.kickOff}
-      feasiDate={data.feasiOk}
-      creaDate={data.creaOk}
-      selecDate={data.selectionOk}
-      shipDate={data.shipmentOk}
-      indus={data.industrialisation}
-      kickOffIndusDate={data.kickOffIndus}
-      goIndusDate={data.goIndus}
-      trialRunDate={data.trialRun}
-      pilotRunDate={data.pilotRun}
-      goProdDate={data.goProd}
-      status={data.status}
-      openModalModify={openModalModify}
-      handleDeleteProject={handleDeleteProject}
-      username={data.username}
-    />
-  ));
-
   return (
     <div className={styles.content}>
       <Head>
-        <title>MyCockpit - Dashboard </title>
+        <title>MyCockpit - KPI </title>
       </Head>
       <Header login={false} username={username} logout={logout} />
       <main className={styles.main}>
         <div className={styles.titlePage}>
-          <p className={styles.title}>DASHBOARD</p>
+          <p className={styles.title}>KPI</p>
         </div>
         <div className={styles.section}>
           <div className={styles.info}>
-            <button
-              type="button"
-              className={styles.btn}
-              title="Add project"
-              aria-label="Add project"
-            >
-              <FontAwesomeIcon
-                icon={faPlus}
-                className={styles.icon}
-                onClick={() => setModalAddProject(true)}
-              />
-            </button>
             <p className={styles.infoText}>My team : {team}</p>
             <p className={styles.infoText}>
               My role : {leader ? "Leader" : "Teammate"}
             </p>
-            <button
-              type="button"
-              className={styles.btn}
-              title="Change role (leader/teammate)"
-              aria-label="Change role (leader/teammate)"
-            >
-              <FontAwesomeIcon
-                icon={faPeopleArrows}
-                className={styles.changeRoleIcon}
-                onClick={() => changeRole()}
-              />
-            </button>
           </div>
-          <div className={styles.filterSection}>
-            <select
-              className={styles.filter}
-              value={statusFilter}
-              onChange={(e) => setStatusFilter(e.target.value)}
-            >
-              <option value="status">Status</option>
-              <option value="Not started">Not started</option>
-              <option value="In progress">In progress</option>
-              <option value="Finished">Finished</option>
-              <option value="Late">Late</option>
-            </select>
 
-            <select
-              className={styles.filter}
-              value={sportFilter}
-              onChange={(e) => setSportFilter(e.target.value)}
-            >
-              <option value="sport">Sport team</option>
-              {sportTeamsList}
-            </select>
-          </div>
-          <div className={styles.projectSection}>
-            <div className={styles.headersTable}>
-              <div className={styles.head}>Owner</div>
-              <div className={styles.head}>Title</div>
-              <div className={styles.head}>Sport team</div>
-              <div className={styles.head}>
-                Kick-off
-                <span className={styles.indusHead}>Kick-Off Indus</span>
-              </div>
-              <div className={styles.head}>
-                Feasibility OK
-                <span className={styles.indusHead}>Go Indus</span>
-              </div>
-              <div className={styles.head}>
-                Creation OK
-                <span className={styles.indusHead}>Trial Run</span>
-              </div>
-              <div className={styles.head}>
-                Selection OK
-                <span className={styles.indusHead}>Pilot Run</span>
-              </div>
-              <div className={styles.head}>
-                Shipment OK
-                <span className={styles.indusHead}>Go Prod</span>
-              </div>
-              <div className={styles.head}>Status</div>
-            </div>
-            <div className={styles.projectsList}>
-              {loading && <p>Loading projects...</p>}
-              {projectsList}
-            </div>
-          </div>
+          <div className={styles.kpiSection}>Under construction...</div>
         </div>
       </main>
       <Footer />
-      {modalAddProject && (
-        <ModalAddProject
-          onClose={onClose}
-          handleAddProject={handleAddProject}
-          sportTeams={sportTeams}
-        />
-      )}
-      {modalModifyProject && (
-        <ModalModifyProject
-          onClose={() => setModalModifyProject(false)}
-          handlePatchProject={handlePatchProject}
-          projectData={projectDataPatch}
-        />
-      )}
     </div>
   );
 }

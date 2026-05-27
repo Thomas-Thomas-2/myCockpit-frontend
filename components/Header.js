@@ -8,16 +8,11 @@ import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import styles from "../styles/Header.module.css";
 
 export default function Header({ login, username, logout, team, leader }) {
+  const router = useRouter();
+
   const handleClick = () => {
     logout();
   };
-
-  const content = (
-    <div>
-      <p>Team : {team}</p>
-      <p>Leader : {leader ? "Yes" : "No"}</p>
-    </div>
-  );
 
   return (
     <header className={styles.content}>
@@ -26,10 +21,26 @@ export default function Header({ login, username, logout, team, leader }) {
           <Image src="/favicon_test.svg" alt="Logo" width={35} height={35} />
         </Link>
       </div>
-      <div className={styles.menu}>
-        {!login && (
-          <>
-            <div className={styles.nav}></div>
+      {!login && (
+        <>
+          <div className={styles.nav}>
+            <Link href="/dashboard">
+              <p
+                className={`${styles.pageTitle} ${router.pathname === "/dashboard" ? styles.active : ""}`}
+              >
+                Dashboard
+              </p>
+            </Link>
+            <Link href="/kpi">
+              <p
+                className={`${styles.pageTitle} ${router.pathname === "/kpi" ? styles.active : ""}`}
+              >
+                KPI
+              </p>
+            </Link>
+          </div>
+
+          <div className={styles.menu}>
             <div className={styles.profile}>
               <span className={styles.username}>{username || "-"}</span>
               <button
@@ -45,9 +56,9 @@ export default function Header({ login, username, logout, team, leader }) {
                 />
               </button>
             </div>
-          </>
-        )}
-      </div>
+          </div>
+        </>
+      )}
     </header>
   );
 }

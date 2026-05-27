@@ -9,6 +9,7 @@ export default function ProjectCard(props) {
   const [status, setStatus] = useState(props.status);
 
   const handleStatus = async (value) => {
+    // Faire remonter dans dashboard pour update le projet !
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/projects/${props.id}`,

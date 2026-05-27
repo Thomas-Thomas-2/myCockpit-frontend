@@ -13,7 +13,6 @@ const checkConnectionNeed = async (router) => {
     if (!data.result) {
       router.replace("/");
     } else {
-      router.replace("/dashboard");
       return data;
     }
   } catch (error) {

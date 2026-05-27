@@ -43,6 +43,10 @@
   font-family: "Roboto Italic";
   padding: 0.1rem;
   color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .indusDate {
@@ -66,6 +70,11 @@
 
 .status {
   font-family: "Roboto Regular";
+  color: black;
+  padding: 0.5rem;
+  background-color: transparent;
+  border: 1px solid #434343;
+  border-radius: 5px;
 }
 
 .icon {
